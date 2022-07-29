@@ -1,0 +1,5 @@
+blobs - metadados do git
+tree - aponta para o blob ou para outras arvores
+commits - aponta para tree, parente, autor, mensagem e timestamp.
+
+pwd -> caminho completo
