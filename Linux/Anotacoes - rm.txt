@@ -1,0 +1,15 @@
+rmdir -> Remove diretórios vazios
+
+rm arquivo* = Remove todo os arquivos com o nome arquivo
+
+rm *.txt -> Remove todos os arquivos .txt
+
+Ñ tem lixeira para recuperar arquivos.
+
+-r -> Recursivo
+
+rm -r -> Entra no diretório e apaga tudo.
+
+rm -rf -> Entra do diretório e apaga tudo de forma forçada.
+
+rm -rf Documentos/

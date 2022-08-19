@@ -1,0 +1,73 @@
+SO		Sistemas de arquivos
+Windows			HFS 
+Unix/Linux		Ext3,Ext4,XFS
+Windows			FAT32, NTFS
+
+lsblk-> Lista de discos
+
+disco rigido -> sd
+
+
+fdisk -l -> lista os discos
+
+Particionando discos
+
+Para particionar:
+fdisk /dev/sdb -> sda, sdb,sdc,sdd enfim... são os numeros de discos.
+
+-n: adicionar nova partição
+
+-p: Partição primaria
+
+Como é primeira, será 1 o numero de partições
+
+Depois é só dar enter e salvar alterações através do w.
+
+Depois de fazer a partição, devemos formatar o disco.
+Devemos especificar qual sistema de arquivos será usado. Podemos usar o padrão do Linux: Ext3 ou Ext4
+
+para isso usamos o comando:
+mkfs.ext4 /dev/sdb
+
+Logo depois disso, podemos usar o disco.
+
+Para usar o disco precisamos montar ele.
+Para isso precisamos de uma pasta.  Temos uma pasta na pasta raiz chamada:
+mnt.
+Lá criaremos um diretorio mkdir disco2
+
+Para montar, usamos o mount: 
+mount /dev/sdb /mnt/disco2/
+
+Precisamos indicar o disco que queremos montar (nesse caso o /dev/sdb)
+E a pasta em que ele será montado (no caso /mnt/disco2/)
+
+Tudo o que for mandado para a pasta /mnt/disco2/ -> será usado no disco2
+
+E se eu quiser desmontar o disco?
+Usamos o comando umount dev/sdb
+Pronto, o disco foi desmontado. E os arquivos da pasta /mnt/disco2/
+ñ estão mais lá.
+
+Se reinicarmos a máquina o disco será desmontado. Precisaremos montartodas as vezes que ligarmos a máquina.
+
+Como podemos fazer isso automaticamente?
+obs:
+sda
+|_sda1
+|_sda2
+|_sda3
+
+estes sdanumero -> São partições
+
+
+Para montar discos automaticamete, acessaremos o arquivo /etc/fstab
+
+Mostra quais discos ou partições já estão montadas
+
+Para montar disco: 
+Indicamos o disco, para onde vai [diretorio] e sistema de arquivos.
+
+/dev/sdb | /disk2 ou /mnt/diretorioCriador |  ext4  	|                defaults 0 0 
+Discos	| Para onde vai		      | Sistema de 	|	parametros default	
+				      | arquivos	|

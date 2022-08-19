@@ -1,0 +1,124 @@
+rm -rfvi Documentos/
+
+
+Atividade de ADM
+
+cat -> visualiza um arquivo de texto
+
+cat /etc/group
+
+sudo passwd root -> atribui senha para o root. esta conta já existe.
+
+Para entrar como usuario root basta usar o comando: su
+
+Não precisa de senha pra fazer as coisas.
+
+Voltar como usuario convencional -> su nomeUsuario.
+
+Como root podemos acessar a conta de qualquer pessoa sem senha.
+
+Acesso remoto via root por padrão vêm bloqueado.
+
+sshd -> Serviço de acesso remoto
+
+Ver o arquivo:
+cat /etc/ssh/sshd_config
+
+PermitRootLogin
+
+Editores de texto: vim e nano
+
+^-> Representa o control
+
+para sair do menuzinho do nano faremos ctrl + x
+
+Acessar com sudo ou como usuario root o  arquivo e tirar o PermitRootLogin do comentário. Tiraremos o   prohibit-password e colocaremos o yes.
+
+PermitRootLogin prohibit-password
+PermitRootLogin yes
+
+Pra salvar o arquivo podemos fazer: ctrl + o pra salvar e pra sair: ctrl + x
+
+Pra finalizar temos que restartar o ssh. Um jeito é: restartando o sistema com o reboot.
+E o outro jeito é restardando o ssh apenas.
+
+Podemos ver  o ssh através do comando:
+systemctl
+
+Podemos ver o status do ssh. E devemos indicar o serviço. Fica:
+systemctl status ssh
+
+Para restartar o ssh usaremos o comando:
+systemctl restart sshd
+
+
+Se quisermos alterar algo no sistema do linux, devemos alterar um arquivo de texto.
+
+Para sair do menu do vim, tem que digitar: w -> write que salva e q -> de quit pra sair
+
+Histórico de comandos:
+
+Reaproveitamento de comandos
+
+comando: history
+
+Lista os últimos 1000 comandos usados
+Com o usuário que estamos logados veremos o seu historico de comandos.
+
+pra indicar um comando que foi utilizado, podemos executar a partir do seu número da lista de comandos:
+!303
+
+!! = Ultimo comando usado
+
+Pesquisa de comandos usados:
+!?dat?
+
+Pra saber se alguém usou um comando, podemos usar o comando:
+history | grep "Planilhas" = Pega todos os comandos que foram usados para editar, criar, deletar e etc com o diretório Planilhas
+
+
+Pra que foi usado o ls por exemplo.. history | grep "ls"
+
+
+Para pegar variaveis de ambiente usamos o comando: export
+
+Podemos ver o dia e a hora que o comando foi utilizado. Para isso precisamos de uma variavel de ambiente de data e hora:
+HISTTIMEFORMAT=
+
+
+%d: Day
+%m: Month
+%y: year
+%H: Hour
+%M: Minutes
+%S: Seconds
+%F: Full date (Y-M-D format)
+%T: Time (H:M:S format)
+
+%c = Pesquisa mais completa
+
+export HISTTIMEFORMAT="%c"
+Podemos dar um espaço para ficar com uma pesquisa mais bonita:
+
+export HISTTIMEFORMAT="%c "
+
+Como limpar o histórico de comandos?
+
+history -c = Apaga todo o historico.
+
+Para que os comandos não sejam salvos usaremos o comando:
+set +o history
+
+E para os comandos serem salvos usamos o comando:
+set -o history
+
+Se quisermos que 50 comandos de um usuário sejam salvos, temos que alterar o arquivo .bashrc
+
+Neste arquivo alteraremos a variavel HISTSIZE=
+Que estava com 1000 para 50.
+HISTSIZE=50
+
+HISTFILESIZE = Tamanno em bytes.
+
+Salvar os comandos em um arquivo: history -w
+Fica no .bash_history

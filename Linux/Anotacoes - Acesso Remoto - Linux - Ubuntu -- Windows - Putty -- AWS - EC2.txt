@@ -1,0 +1,59 @@
+Acesso Remoto:
+
+ip a => Mostra todos os ip's disponiveis para esta máquina
+
+Faremos acesso remoto pelo putty.
+
+Baixa putty.exe. E puttygen.exe
+
+Devemos instalar o openssh-server no ubuntu.
+
+Comando:
+apt-get install openssh-server
+
+Caso ocorra o erro de access denied, usar o sudo.
+sudo apt-get install openssh-server
+
+Logo depois, é só pegar o ipv 4 da máquina indicada na lista do ip a e colocar no putty.
+Colocar o usuario e senha do usuário do ubuntu e logar.
+
+
+Acesso remoto via ubuntu.
+Comando:
+ssh + [nome do usuário da máquina] + [ip da máquina]
+Exemplo:
+ssh rafael@192.168.1.12
+
+Acessando uma máq. virtual em nuvem(Putty)
+Baixar o putty: 
+https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
+
+Acessaremos pelo Windows via Putty.
+Para acessar a instancia da EC2 da AWS, será necessário uma credencial.
+Essa credencial é o .pem. Mas o putty só aceita tipos ppk.
+Portanto, precisamos converter o .pem em .ppk.
+Faremos isso através do puttygen.
+
+Clicar em Load.
+Selecionaremos o arquivo .pem (caso ñ apareça, é só escolher para aparecer todos os arquivos).
+Feito isso, clicar no botão Save private key e salvar.
+
+Feito isso, podemos selecionar o arquivo ppk para o putty.
+
+Iremos em connection > auth e colocaremos o .ppk lá.
+
+Retornarmos para o session e colocaremos o ip da instancia da aws.
+
+Quando a aws cria a instancia na EC2 do ubuntu, o nome de usuário padrão é ubuntu.
+Não precisaremos colocar a senha, pq já temos a credencial. E assim, podemos logar na aws.
+
+Acessando máquina virtual em nuvem (ssh)
+
+No terminal do ubuntu, usaremos o ssh.
+A diferença é que usaremos o certificado.
+Para isso faremos:
+ssh -l ubuntu-aws.pem [nome de usuario]@ + [ip da maquina]
+
+ssh -l ubuntu-aws.pem ubuntu@15.228.205.227
+
+chmod

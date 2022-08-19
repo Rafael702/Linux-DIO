@@ -1,0 +1,102 @@
+Tem como passar a senha para o  usuario na hora da criação?
+Sim, através do comando -p. Contudo, ele sempre vai encriptar e não conseguiremos acessar a conta do usuário.
+
+Para resolver isso usamos os comandos abaixo:
+useradd convidado1 -c "Convidado Especial"  -s /bin/bash  -m  -p $(openssl passwd -crypt Senha123)
+
+Podemos criar usuario em lote, isto é, diversos usuários com o mesmo padrão:
+nome, senha, ter o bash e ter uma pastinha própria.
+
+Para isso podemos criar um diretório na raiz e criar um arquivo neste diretório chamado: criar_user.sh.
+
+Para escrever em um arquivo script, faremos da seguinte forma:
+#!/bin/bash -> Indica que o arquivo é um sh.
+
+No sh podemos digitar os comandos normalmente.
+Ficou:
+_______________________________________________________________________________________________________
+#!/bin/bash
+
+echo "Criando usuários do sistema...."
+
+useradd guest10 -c "Usuario convidado" -s /bin/bash -m -p $(openssl passwd  Senha123)
+passwd guest10 -e
+
+useradd guest11 -c "Usuario convidado" -s /bin/bash -m -p $(openssl passwd Senha123)
+passwd guest11 -e
+
+useradd guest12 -c "Usuario convidado" -s /bin/bash -m -p $(openssl passwd Senha123)
+passwd guest12 -e
+
+useradd guest13 -c "Usuario convidado" -s /bin/bash -m -p $(openssl passwd Senha123)
+
+passwd guest13 -e
+
+echo "Finalizado!!"
+____________________________________________________________________________________________________
+
+
+Esse arquivo ñ tem permissão por padrão de execução. Precisamos liberar a permissão.
+
+Tem o chmod que pode liberar as permissões, usaremo o comando:
+chmod +x nomeDoArquivo
+
+Ele fica na cor verde, indicando que agora ele pode ser executado. Para executálo, fazemos:
+./criar_user.sh
+
+Lembrete *: Current password: Senha atual
+
+Grupos de usuario
+
+Para visualizar os grupos, devemos olhar o arquivo gropu do diretorio etc.
+
+cat /etc/group
+
+Se o usuario ñ estiver como adm, é pq ele ñ está incluido no grupo de adm. Logo, precisamos inclui-lo.
+Faremos isso atraves do comando: usermode -G (-g: 1 grupo; -G:2+) nomeGroup,nomeGroup nomeUsuario
+
+Ex> usermod -G adm,sudo joao
+
+Como criar grupos
+
+Para criar grupo: groupadd GRP_ADM
+Para deletar> groupdel GRP_ADM
+
+gpasswd -d nomeUsuario nomeGroup -> Tira usuario do grupo
+
+Se quisermos incluir um usuario já existente a um grupo, devemos indicar os grupos atuais dele e o novo grupo:
+usermod -G adm,sudo,GR_ADM joao
+
+
+Permissões
+
+O ls -l => Mostra as permissões
+Colunas
+rwx       rwx           rwx
+dono    grupo       outros
+
+r -> read
+w -> write
+x -> execute
+
+Alterando as permissões
+R - Read(Leitura) -> 4
+W - Write (Gravação) -> 2
+X -> Execute(Execução) -> 1
+Nenhum -> 0
+
+Podemos mudar as permissões através do chmod.
+Quero dar permissão total -> 4 + 2 + 1 = 7
+
+Isto serve para arquivos.
+Lembrar que as determinações de permissões seguem uma coluna de: dono, grupo, outros
+Ex:
+chmod 740 /nomeDiretorioOuArquivo/
+7 -> Dono tem acesso total
+4 -> Quem é do grupo só pode ler
+0 -> Os outros ñ tem permissão
+
+Adicionar o grupo as permissões
+chown root:GR_ADM nomeArquivoOuDiretorio
+
+

@@ -1,0 +1,105 @@
+Gerenciamento de pacotes  ->
+Para atualizar o linux, tem que pedir.
+
+apt-get: gerenciador de pacotes de baixo nivel. Menos amigável. 
+Mais recomendável para colocar em um script para fazer instalações e atualizações no Linux
+
+apt : ferramenta mais moderna. Vê o que precisa ser atualizado e faz instalações
+
+apt list: lista de softwares disponiveis para instalar
+apt list --installed: lista de softwares instalados no linux
+
+apt list -upgradeable -> lista de softwares disponiveis para ser atualizados
+
+para pesquisar determinada ferramenta para instalar podemos usar o comando: apt search ifconfig
+
+ifconfig -> consulta de ip na máquina, forma antiga. Podemos instalar essa ferramenta.
+Esta ferramebta está disponivel no pacote net-tools.
+
+Sendo assim instalaremos ele através do comando: apt install net-tools
+
+wget -> faz downloads
+apt install wget
+
+extrair arquivos do zip -> unzip
+
+precisa instalar também: apt install unzip
+
+remover ferramentas:
+apt remove nomeDoPacote -y
+
+-y: Yes
+Assim em um arquivo script ñ aparecerá a pergunta: "Tem certeza?"
+
+Como o apt faz buscas de downloads em seus repositórios, como fariamos para baixar um software ou ferramenta contida no repositorio da Oracle?
+
+apt edit-sources: Teriamos que adicionar o endereço do repositorio aqui
+
+Vai aparecer:
+# See http://help.ubuntu.com/community/UpgradeNotes for how to upgrade to
+# newer versions of the distribution.
+deb http://br.archive.ubuntu.com/ubuntu jammy main restricted
+# deb-src http://br.archive.ubuntu.com/ubuntu jammy main restricted
+
+## Major bug fix updates produced after the final release of the
+## distribution.
+deb http://br.archive.ubuntu.com/ubuntu jammy-updates main restricted
+# deb-src http://br.archive.ubuntu.com/ubuntu jammy-updates main restricted
+
+## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu
+## team. Also, please note that software in universe WILL NOT receive any
+## review or updates from the Ubuntu security team.
+deb http://br.archive.ubuntu.com/ubuntu jammy universe
+# deb-src http://br.archive.ubuntu.com/ubuntu jammy universe
+deb http://br.archive.ubuntu.com/ubuntu jammy-updates universe
+# deb-src http://br.archive.ubuntu.com/ubuntu jammy-updates universe
+
+## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu
+## team, and may not be under a free licence. Please satisfy yourself as to
+## your rights to use the software. Also, please note that software in
+## multiverse WILL NOT receive any review or updates from the Ubuntu
+## security team.
+deb http://br.archive.ubuntu.com/ubuntu jammy multiverse
+# deb-src http://br.archive.ubuntu.com/ubuntu jammy multiverse
+deb http://br.archive.ubuntu.com/ubuntu jammy-updates multiverse
+# deb-src http://br.archive.ubuntu.com/ubuntu jammy-updates multiverse
+
+## N.B. software from this repository may not have been tested as
+## extensively as that contained in the main release, although it includes
+## newer versions of some applications which may provide useful features.
+## Also, please note that software in backports WILL NOT receive any review
+## or updates from the Ubuntu security team.
+deb http://br.archive.ubuntu.com/ubuntu jammy-backports main restricted universe multiverse
+# deb-src http://br.archive.ubuntu.com/ubuntu jammy-backports main restricted universe multiverse
+
+deb http://br.archive.ubuntu.com/ubuntu jammy-security main restricted
+# deb-src http://br.archive.ubuntu.com/ubuntu jammy-security main restricted
+deb http://br.archive.ubuntu.com/ubuntu jammy-security universe
+# deb-src http://br.archive.ubuntu.com/ubuntu jammy-security universe
+ 
+
+e neste arquivo adicionamos o endereço.
+
+Atualização do SO:
+Testar antes de fazer a atualização da so.
+snapshots-> neste modo, se der erro podemos voltar
+
+Este modo existe no VMware, é só clicar nos três pontinhos da máq virtual do ubuntu.
+Criar um snapshots da versão anterior a atualização e testar a atualização. Se der erro podemos voltar ao estado anterior da so
+
+Primeiro temos que fazer a atualização dos pacotes disponiveis para atualização.
+
+apt update -> atualiza pacotes
+
+apt upgrade -y -> atualiza a so sem perguntar: "Tem certeza?"
+
+apt list --upgradable -> Lista de softwares atualizados
+
+Estes comandos são feitos em distribuições deblian e ubuntu. Mas, como que faz para gerenciar pacotes no FEDORA, RED HAT....cenTOS... enfim?
+
+O Gerenciador de pacotes destas distribuições são diferentes.
+No Red Hat o gerenciador de arquivos é o dnf e o yun.
+A diferença entre os dois é a mesma do apt-get e apt.
+Um é melhor para o script por conta da interação com o usuario (dnf [red hat], apt [ubuntu, deblian]); e a ñ interativa é o yun. 
+
+

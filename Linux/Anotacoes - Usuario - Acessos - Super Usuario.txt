@@ -1,0 +1,63 @@
+Criando usuarios:
+Usuarios que terão caracteristicas administrativas.
+Usuários gravar arquivos, acessar páginas da web.
+Usuários do ambiente desktop.	
+
+Para criar usuario, comando: useradd nomeDoUsuario
+
+Para excluir o usuario, comando:
+userdel joao
+Forçar caso esteja online: 
+userdel -f joao
+
+useradd nomeUsuario -m -c "comentario"
+
+-m -> cria pasta do usuario
+-c -> Podemos deixar um comentário
+
+useradd joao -m -c "Silva Gomes"
+
+
+Para dar uma senha para o usuario, comando:
+passwd nomeUsuario
+
+Podemos trocar a senha do usuario atraves desse comando.
+
+Quando criamos o usuario precisamos indicar o kernel/shell que ele vai usar, caso contrario ñ haverá indicações de qual pastas estamos, nome de usuario... enfim, a maneira padrão de aparecer as informações no terminal.
+
+
+
+Se o usuario já está criado podemos usar o comando: chsh
+Porém, da seguinte forma:
+chsh -s /bin/bash nomeUsuario
+ usermod guest -s /bin/bash -> Desse jeito também inclui o shell na conta do usuario
+
+chsh -> Change Shell
+-s -> set
+
+se quisermos deletar esse usuario, agora devemos apagar o usuario e a sua pasta:
+userdel -r -f nomeUsuario
+
+COmo indicar o shell na hora de criar o usuario:
+useradd nomeUsuario -m -c "comentario" -s /bin/bash
+
+Editando informaçções do usuario:
+
+Expiração para acesso do usuario no servidor.
+
+useradd guest -c "" -m -e 26/06/2022
+
+-e : expiração
+
+Podemos tambem incluir a expriacao da senha, atraves do comando: 
+passwd guest -e 
+
+quando nao colocamos nada, o usuario pode trocar a senha
+
+Se quisermos consultar as informações dos usuarios que estão no servidor, atraves da leitura do arquivo passwd do diretorio etc.
+Para ler um arquivo usamos o comando: cat
+cat /etc/passwd
+
+Para fazer qualquer alteração do usuario podemos usar o comando usermode. O recomendável é não editar o arquivo passwd e sim usar o usermode.
+
+

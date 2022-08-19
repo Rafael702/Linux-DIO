@@ -1,0 +1,9 @@
+Desafio -> Anotações:
+Para atribuir permissoes de grupos 
+chown
+
+Para atribuir niveis de permissões
+chmod
+
+Para deixar o arquivo apto para rodar:
+chmod +x nomeDoArquivo

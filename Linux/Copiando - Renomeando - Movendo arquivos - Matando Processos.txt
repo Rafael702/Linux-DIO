@@ -1,0 +1,65 @@
+Copiando arquivos ->
+Para fazer cópias precisamos entender onde está o arquivos, quantos queremos copiar e pra onde vamos copia-los
+
+cp -> Comando pra copiar
+
+copiar um arquivo: cp /home/denilson/bancodedados.mdf /disk2/
+Indica o arquivo a ser copiado e o seu destino
+
+Para indicar uma série de arquivos:
+cp /home/denilson/*.txt /disk2
+
+*- > Pega tudo de [neste caso] arquivos textos que tiver nesta pasta.
+
+Se já estamos na pasta e queremos copiar os arquivos desta pasta, basta passar o ./nomeArquivo ou pasta
+
+cp ./a* /disk2/
+
+Se na pasta já existir arquivos, corremos o risco de os arquivos sobrepor os outros que já existem.
+Para isso podemos usar o -i
+
+cp ./a* /disk2/ -i
+
+
+Se eu quiser copiar tudo, podemos usar o cp /home/denilson/* /disk2/ -r
+
+Podemos ativar o mode verboso para obtermos os 'logs' 
+
+cp /home/denilçson/* disk2/ -r -v
+
+Muito util para cópias volumosas
+
+Renomear e mover arquivos:
+Para mover os arquivos podemos usar o comando:
+mv
+
+mv /home/denilson/arquivoNome /disk2/
+
+Mover todos
+
+mv /home/denilson/* /disk2/ -i -v
+
+Pra renomear arquivos podemos usar o mv também
+mv nomeAtualArquivo novoNomeArquivo
+
+Processos:
+Usuario usando uma aplicação que ñ deveria usar. Como derrubá-lo?
+ps aux
+ps: processos
+a : processos de todos os usuarios
+u: nome do usuario
+x: processos fora do console -> ambientes graficos
+
+kill -> mata processos
+kill idDoProcesso
+
+Nome do processo
+killall nomeDoProcesso
+
+w -> mostra os usuarios logados no servidor
+pid
+
+who -a -> mostra o pin do usuario
+
+se tiver o pin podemos deslogar o usuario do servidor
+kill idDoProcesso

@@ -1,0 +1,57 @@
+O que é uma SO(Sistema Operacional)?
+Um ou varios conjuntos de softwares que gerenciam o recurso de um sistema.
+
+Kernel -> Núcleo do SO. Faz intermediação entre o usuário e a máquina.
+É o tradutor de comandos feitas pelo usuário para a máquina;
+
+gerencia recursos como processador, RAM, sistemas e arquivos.
+
+O Linux não é suportado por uma empresa individual, mas por uma comunidade de desenvolvedores. Assim o kernel acaba sendo gratuito
+
+O kernel pode ser adequado para o que eu precisar, pois ele não está restrito a empresa alguma. 
+
+Linux tem o mascote Tux, o pinguim
+Quem mantem o Linux atualizado é a Linux Foundation.
+
+bcdedit - Lista
+
+bcdedit /set hypervisorlaunchtype off - Seta o hypervisorlaunchtype.
+
+Placa em Modo Bridge -> Faz uma ponte para que eu chegue até ela. Acesso remoto.
+
+login no ubuntu:
+username: rafael
+password: 1234
+
+reboot -> reinicia a máquina.
+sudo reboot -> reinicia no modo adm.
+
+Desligando a máquina:
+shutdown [tempo]
+
+Pra desligar na hora exata:
+shutdown 0
+
+
+WSL -> Subsistema do Windows para Linux
+Como usar o WSL?
+Só funciona em Windows 10 ou 11 Pro
+
+Ou usamos o VirtualBox, ou usamos o WSL.
+Isso pq o hypervisorlaunchtype deve estar auto para o WSL.
+Enquanto para o virtualBox ele deve estar off.
+
+bcdedit /set hypervisorlaunchtype auto
+
+Feito isso, as SO podem ser instaladas como aplicativos.
+Isso pode ser feito pela loja de softwares do Windows.
+
+
+
+Portanto, três formas de criar uma máquina adicional foram apresentadas:
+Pelo VirtualBox da Oracle;
+Pela EC2 da AWS;
+E pela WSL do Windows.
+
+https://docs.microsoft.com/en-us/windows/wsl/install-manual
+
